@@ -1,7 +1,8 @@
 import { INTEGER, STRING } from 'sequelize'
-import sequelize from '../repositories/db.js' 
+import db from '../repositories/db.js' 
 
-const Games = sequelize.define('Games', {
+const Games = db.define(
+  "games", {
   id: { 
     type: INTEGER,
     allowNull:false,
@@ -20,9 +21,9 @@ const Games = sequelize.define('Games', {
     type: STRING,
     allowNull:false,
   },
-  sku: { 
-    type: INTEGER,
-    allowNull:false,
-  },
+}, {
+    
+    timestamps: true, 
+  
 })
  export default Games

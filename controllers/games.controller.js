@@ -7,32 +7,32 @@ import {
 } from "../services/games.service.js";
 
 const createGamesController = async (req, res, next) => {
-  const game = req.body;
+  const paramsEnviado = req.body;
 
   try {
-    if (!game.name || !game.cost) {
+    if (!paramsEnviado.name || !paramsEnviado.cost) {
       res.status(400).send({ msg: "Nome e preço são obrigatórios!" });
     }
 
-    res.send(createGameService(game));
+    res.send(createGameService(paramsEnviado));
   } catch (err) {
     console.log(err);
   }
 };
 
 const updateGamesController = async (req, res, next) => {
-  const game = req.body;
+  const paramsEnviado = req.body;
 
   try {
     if (
-      !game.sku ||
-      !game.name ||
-      !game.cost
+      !paramsEnviado.category ||
+      !paramsEnviado.name ||
+      !paramsEnviado.cost
     ) {
-      res.status(400).send({ msg: "Sku, Nome e Preço são obrigatórios!" });
+      res.status(400).send({ msg: "Categoria, Nome e Preço são obrigatórios!" });
     }
 
-    res.send(updateGameService(game));
+    res.send(updateGameService(paramsEnviado));
   } catch (err) {
     console.log(err);
   }
@@ -66,14 +66,14 @@ const getGamesController = async (req, res, next) => {
 };
 
 const getGameController = async (req, res, next) => {
-  const { id } = req.params;
+  const { name } = req.params;
 
   try {
     if (req.method !== "GET") {
       res.status(400).send({ msg: "Método incorreto" });
     }
 
-    const result = await getGameService(id);
+    const result = await getGameService(name);
     res.send(result);
   } catch (err) {
     console.log(err);

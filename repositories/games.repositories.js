@@ -1,22 +1,22 @@
 import Games from "../models/games.models.js";
 
-const insertGameRepository = async (Games) => {
+const insertGameRepository = async (paramsEnviado) => {
   try {
-    return await Games.create(Games);
+    return await Games.create(paramsEnviado);
   } catch (err) {
     console.log(err);
   }
 };
 
-const updateGameRepository = async (Games) => {
+const updateGameRepository = async (paramsEnviado) => {
   try {
-    await Games.update(Games, {
+    await Games.update(paramsEnviado, {
       where: {
-        id: Games.id,
+        id: paramsEnviado.id,
       },
     });
 
-    return getGameRepository(Games.id);
+    return getGameRepository(paramsEnviado.id);
   } catch (err) {
     console.log(err);
   }
@@ -42,9 +42,11 @@ const getGamesRepository = async () => {
   }
 };
 
-const getGameRepository = async (id) => {
+const getGameRepository = async (name) => {
   try {
-    return await Games.findByPk(id);
+    return await Games.findOne({
+      where: { name: name } // Substitua 'coluna' pelo nome da coluna e 'valor' pelo valor que você deseja procurar
+    })
   } catch (err) {
     console.log(err);
   }

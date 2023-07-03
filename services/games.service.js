@@ -22,8 +22,8 @@ const getGamesService = () => {
   return getGamesRepository();
 };
 
-const getGameService = (id) => {
-  return getGameRepository(id);
+const getGameService = (name) => {
+  return getGameRepository(name);
 };
 
 export {
