@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Games from "../models/games.models.js";
 
 const insertGameRepository = async (paramsEnviado) => {
@@ -44,8 +45,16 @@ const getGamesRepository = async () => {
 
 const getGameRepository = async (name) => {
   try {
-    return await Games.findOne({
-      where: { name: name } // Substitua 'coluna' pelo nome da coluna e 'valor' pelo valor que você deseja procurar
+    return await Games.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${name}%`
+            }
+          },
+        ]
+      } // Substitua 'coluna' pelo nome da coluna e 'valor' pelo valor que você deseja procurar
     })
   } catch (err) {
     console.log(err);

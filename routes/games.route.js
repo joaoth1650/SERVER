@@ -15,28 +15,19 @@ router.post("/register", createGamesController);
 router.put("/edit", updateGamesController);
 router.delete("/delete/:id", deleteGameController);
 router.get('/consultaPage/?', async (req, res) => {
-  const pageAsNumber = Number.parseInt(req.query.page);
-  const sizeAsNumber = Number.parseInt(req.query.size);
+  const page = +req.query.page || 0;
+  const size = +req.query.size || 12;
 
-  let page = 0;
-  if(!Number.isNaN(pageAsNumber) && pageAsNumber > 0){
-    page = pageAsNumber;
-  }
-
-  let size = 10;
-  if(!Number.isNaN(sizeAsNumber) && !(sizeAsNumber > 10) && !(sizeAsNumber < 1)){
-    size = sizeAsNumber;
-  }
-
-  const usersWithCount = await Games.findAndCountAll({
+  const gamesWithCount = await Games.findAndCountAll({
     limit: size,
     offset: page * size
   });
+
   res.send({
-    content: usersWithCount.rows,
-    totalPages: Math.ceil(usersWithCount.count / Number.parseInt(size))
+    content: gamesWithCount.rows,
+    totalPages: Math.ceil(gamesWithCount.count / size)
   });
-})
+});
 router.get("/", getGamesController);
 router.get("/:name", getGameController);
 
