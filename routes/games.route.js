@@ -9,12 +9,13 @@ import {
 
 const router = express.Router();
 import Games from "../models/games.models.js";
+import verifyJWT from '../middleware/middlewareFrontal.js'
 
 
-router.post("/register", createGamesController);
-router.put("/edit", updateGamesController);
-router.delete("/delete/:id", deleteGameController);
-router.get('/consultaPage/?', async (req, res) => {
+router.post("/games/register", verifyJWT , createGamesController);
+router.put("/games/edit", verifyJWT ,updateGamesController);
+router.delete("/games/delete/:id", verifyJWT ,deleteGameController);
+router.get('/games/consultaPage/?', verifyJWT , async (req, res) => {
   const page = +req.query.page || 0;
   const size = +req.query.size || 12;
 
@@ -28,7 +29,9 @@ router.get('/consultaPage/?', async (req, res) => {
     totalPages: Math.ceil(gamesWithCount.count / size)
   });
 });
-router.get("/", getGamesController);
-router.get("/:name", getGameController);
+router.get("/games", verifyJWT ,getGamesController);
+router.get("/games/:name", verifyJWT ,getGameController);
+
+
 
 export default router

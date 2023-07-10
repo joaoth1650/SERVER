@@ -6,16 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "div": "nodemon src/index.js"
+    "div": "nodemon src/index.js",
+    "login": "nodemon zlogin/index.cjs"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
     "axios": "^1.4.0",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.1",
     "mysql2": "^3.4.2",
     "nodemon": "^2.0.22",
     "sequelize": "^6.32.1"
