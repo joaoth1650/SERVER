@@ -8,7 +8,14 @@ dotenv.config();
 const SECRET = process.env.SECRET_KEY;
 const router = express.Router();
 
-router.post('/register', (req, res) => {
+
+const headers = {
+  'x-access-token': '',
+  'Content-Type': 'application/json',
+};
+
+
+router.post('/users/register', (req, res) => {
   const { username, password } = req.body;
 
   User.create({ username, password })
@@ -41,6 +48,18 @@ router.post('/users/login', (req, res) => {
       res.status(500).send('Erro ao fazer login');
       
     });
+});
+
+router.get('/users/logout', async (req, res) => {
+  if (req.headers && req.headers['x-access-token']) {
+    const token = req.headers['x-access-token'];
+    if (token) {
+      return res
+        .status(201).send()
+        
+    }
+    return res.status(403).send("token nao informado") 
+  }
 });
 
 
