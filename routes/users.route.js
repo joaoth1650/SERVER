@@ -10,56 +10,56 @@ const router = express.Router();
 
 
 const headers = {
-  'x-access-token': '',
-  'Content-Type': 'application/json',
+	'x-access-token': '',
+	'Content-Type': 'application/json',
 };
 
 
 router.post('/users/register', (req, res) => {
-  const { username, password } = req.body;
+	const { username, password } = req.body;
 
-  User.create({ username, password })
-    .then(() => {
-      res.send('Usuário registrado com sucesso');
-      console.log(res)
-    })
-    .catch(err => {
-      console.error('Erro ao registrar o usuário:', err);
-      res.status(500).send('Erro ao registrar o usuário');
-    });
+	User.create({ username, password })
+		.then(() => {
+			res.send('Usuário registrado com sucesso');
+			console.log(res)
+		})
+		.catch(err => {
+			console.error('Erro ao registrar o usuário:', err);
+			res.status(500).send('Erro ao registrar o usuário');
+		});
 });
 
 
 router.post('/users/login', (req, res) => {
-  const { username, password } = req.body;
+	const { username, password } = req.body;
 
-  User.findOne({ where: { username, password } })
-    .then(user => {
-      if (user ) {
-        const token = jwt.sign({username: user.username, password: user.password}, SECRET, {expiresIn: 21600});
-        return res.json(token);
-      } else {
-        // Credenciais inválidas
-        res.status(401).send('Credenciais inválidas');
-      }
-    })
-    .catch(err => {
-      console.error('Erro ao fazer login:', err);
-      res.status(500).send('Erro ao fazer login');
-      
-    });
+	User.findOne({ where: { username, password } })
+		.then(user => {
+			if (user) {
+				const token = jwt.sign({ username: user.username, password: user.password }, SECRET, { expiresIn: 21600 });
+				return res.json(token);
+			} else {
+				// Credenciais inválidas
+				res.status(401).send('Credenciais inválidas');
+			}
+		})
+		.catch(err => {
+			console.error('Erro ao fazer login:', err);
+			res.status(500).send('Erro ao fazer login');
+
+		});
 });
 
 router.get('/users/logout', async (req, res) => {
-  if (req.headers && req.headers['x-access-token']) {
-    const token = req.headers['x-access-token'];
-    if (token) {
-      return res
-        .status(201).send()
-        
-    }
-    return res.status(403).send("token nao informado") 
-  }
+	if (req.headers && req.headers['x-access-token']) {
+		const token = req.headers['x-access-token'];
+		if (token) {
+			return res
+				.status(201).send()
+
+		}
+		return res.status(403).send("token nao informado")
+	}
 });
 
 
