@@ -30,7 +30,7 @@ router.get('/games/consultaPage/?', verifyJWT , async (req, res) => {
   });
 });
 router.get("/games", verifyJWT ,getGamesController);
-router.get("/games/:name" ,getGameController);
+router.get("/games/:name",getGameController);
 
 
 
