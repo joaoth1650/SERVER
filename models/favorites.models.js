@@ -1,34 +1,42 @@
 import { INTEGER, STRING } from 'sequelize'
 import db from '../repositories/db.js' 
-import Sequelize from 'sequelize'
+import Games from './games.models.js'
+import Users from './users.models.js'
+
 
 const Favorites = db.define(
-  "Favorites", {
-    id: { 
+  "favorites", {
+    gamesId: { 
       type: INTEGER,
-      allowNull:false,
-      primaryKey: true,
-      autoIncrement: true
+      allowNull: false,
+      references: { 
+        model: 'games',
+        key: 'id'
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
     },
-    name: { 
-      type: STRING,
-      allowNull:false,
-    },
-    cost: { 
+    usersId: { 
       type: INTEGER,
-      allowNull:false,
-    },
-    category: { 
-      type: STRING,
-      allowNull:false,
-    },
-    createdAt: {
       allowNull: false,
-      type: Sequelize.DATE,
+      references: { 
+        model: 'users',
+        key: 'id'
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
     },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE,
-    }
+  },{
+    underscored: true
+  }
+  )
+
+  Favorites.belongsTo(Games, {
+    foreignKey: 'gamesId',
   })
+  Favorites.belongsTo(Users, {
+    foreignKey: 'usersId',
+  })
+ 
+
  export default Favorites

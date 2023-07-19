@@ -29,7 +29,7 @@ const updateFavoritesController = async (req, res, next) => {
       !paramsEnviado.name ||
       !paramsEnviado.cost
     ) {
-      res.status(400).send({ msg: "Categoria, Nome e Preço são obrigatórios!" });
+      res.status(400).send({ msg: "Categoria, Nome ou Preço são obrigatórios!" });
     }
 
     res.send(updateFavoriteService(paramsEnviado));
@@ -79,6 +79,7 @@ const getFavoriteController = async (req, res, next) => {
     console.log(err);
   }
 };
+
 
 export {
   createFavoritesController,

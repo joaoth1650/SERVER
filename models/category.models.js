@@ -1,37 +1,29 @@
 import { INTEGER, STRING, DATE } from 'sequelize'
 import db from '../repositories/db.js' 
+import Favorites from './favorites.models.js';
 
-const Users = db.define(
-  "users", {
+const Category = db.define(
+  "category", {
     id: { 
-      type:INTEGER,
+      type: Sequelize.INTEGER,
       allowNull:false,
       primaryKey: true,
       autoIncrement: true
     },
     name: { 
-      type: STRING,
-      unique: true,
+      type: Sequelize.STRING,
       allowNull:false,
-    },
-    email: {
-      type: STRING,
-      unique: true,
-      allowNull:false,
-    },
-    password: { 
-      type: STRING,
-      allowNull: false,
     },
     createdAt: {
       allowNull: false,
-      type: DATE,
+      type: Sequelize.DATE,
     },
     updatedAt: {
       allowNull: false,
-      type: DATE,
+      type: Sequelize.DATE,
     },
   }
-)
+); 
 
- export default Users
+
+ export default Category

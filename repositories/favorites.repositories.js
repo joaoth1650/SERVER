@@ -61,6 +61,23 @@ const getFavoriteRepository = async (name) => {
   }
 };
 
+// const getFavoritesAondeGamesOuUsers = async (paramsEnviado) => {
+//   Favorites.findAll({
+//     where:{id:paramsEnviado.id}, 
+//     include:[
+//         { model:Games, 
+//           where:{ 
+//                 is_valid:1, 
+//                 is_vertify:1},   
+//           required:false
+//           }
+//         ]
+//      })
+//      .success(function(result) {
+//        callback(result);
+//    });
+// }
+
 export {
   insertFavoriteRepository,
   updateFavoriteRepository,

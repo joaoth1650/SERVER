@@ -1,6 +1,6 @@
 import express from 'express';
 import db from '../repositories/db.js'
-import User from "../models/users.models.js"
+import Users from "../models/users.models.js"
 import verifyJWT from '../middleware/middlewareFrontal.js'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
@@ -29,14 +29,13 @@ router.post('/users/register', (req, res) => {
 		});
 });
 
-
 router.post('/users/login', (req, res) => {
-	const { username, password } = req.body;
+	const { name, password } = req.body;
 
-	User.findOne({ where: { username, password } })
-		.then(user => {
-			if (user) {
-				const token = jwt.sign({ username: user.username, password: user.password }, SECRET, { expiresIn: 21600 });
+	Users.findOne({ where: { name, password } })
+		.then(users=> {
+			if (users) {
+				const token = jwt.sign({ name: users.name, password: users.password }, SECRET, { expiresIn: 21600 });
 				return res.json(token);
 			} else {
 				// Credenciais inválidas
