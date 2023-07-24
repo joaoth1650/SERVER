@@ -10,8 +10,8 @@ const createFavoritesController = async (req, res, next) => {
   const paramsEnviado = req.body;
 
   try {
-    if (!paramsEnviado.name || !paramsEnviado.cost) {
-      res.status(400).send({ msg: "Nome e preço são obrigatórios!" });
+    if (!paramsEnviado.gamesId || !paramsEnviado.usersId) {
+      res.status(400).send({ msg: "id's  são obrigatórios!" });
     }
 
     res.send(createFavoriteService(paramsEnviado));

@@ -66,14 +66,14 @@ const getGamesController = async (req, res, next) => {
 };
 
 const getGameController = async (req, res, next) => {
-  const { name } = req.params;
+  const { id } = req.params;
 
   try {
     if (req.method !== "GET") {
       res.status(400).send({ msg: "Método incorreto" });
     }
 
-    const result = await getGameService(name);
+    const result = await getGameService(id);
     res.send(result);
   } catch (err) {
     console.log(err);

@@ -1,9 +1,9 @@
 import { Op } from "sequelize";
 import Favorites from "../models/favorites.models.js";
 
-const insertFavoriteRepository = async (paramsEnviado) => {
+const insertFavoriteRepository = async (gamesId, usersId) => {
   try {
-    return await Favorites.create(paramsEnviado);
+    return await Favorites.create(gamesId, usersId);
   } catch (err) {
     console.log(err);
   }

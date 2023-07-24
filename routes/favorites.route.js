@@ -14,7 +14,7 @@ import verifyJWT from '../middleware/middlewareFrontal.js'
 
 router.post("/favorites/register", verifyJWT , createFavoritesController);
 router.put("/favorites/edit", verifyJWT ,updateFavoritesController);
-router.delete("/favorites/delete/:id", verifyJWT ,deleteFavoriteController);
+router.delete("/favorites/delete/:id" ,deleteFavoriteController);
 router.get("/favorites", verifyJWT ,getFavoritesController);
 router.get("/favorite/:name",getFavoriteController);
 

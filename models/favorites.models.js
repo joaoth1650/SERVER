@@ -1,4 +1,4 @@
-import { INTEGER, STRING } from 'sequelize'
+import { INTEGER, STRING, DATE } from 'sequelize'
 import db from '../repositories/db.js' 
 import Games from './games.models.js'
 import Users from './users.models.js'

@@ -43,7 +43,25 @@ const getGamesRepository = async () => {
   }
 };
 
-const getGameRepository = async (name) => {
+const getGameRepository = async (id) => {
+  try {
+    return await Games.findAll({
+      where: {
+        [Op.or]: [
+          {
+            id: {
+              [Op.like]: `${id}`
+            }
+          },
+        ]
+      } // Substitua 'coluna' pelo nome da coluna e 'valor' pelo valor que você deseja procurar
+    })
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const getGameAlgumRepository = async (name) => {
   try {
     return await Games.findAll({
       where: {
