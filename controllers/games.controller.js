@@ -4,6 +4,7 @@ import {
   deleteGameService,
   getGamesService,
   getGameService,
+  getAlgumGameService,
 } from "../services/games.service.js";
 
 const createGamesController = async (req, res, next) => {
@@ -80,10 +81,25 @@ const getGameController = async (req, res, next) => {
   }
 };
 
+const getAlgumGameController = async (req, res, next) => {
+  const { name } = req.params;
+
+  try {
+    if (req.method !== "GET") {
+      res.status(400).send({ msg: "metodo invalido!"})
+    }
+    const result = await getAlgumGameService(name);
+    res.send(result);
+  } catch (err) {
+    console.log(err);
+  }
+ }
+
 export {
   createGamesController,
   updateGamesController,
   deleteGameController,
   getGamesController,
   getGameController,
+  getAlgumGameController,
 };

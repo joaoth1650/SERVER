@@ -4,6 +4,7 @@ import {
   deleteGameRepository,
   getGamesRepository,
   getGameRepository,
+  getAlgumGameRepository,
 } from "../repositories/games.repositories.js";
 
 const createGameService = (Games) => {
@@ -26,10 +27,15 @@ const getGameService = (name) => {
   return getGameRepository(name);
 };
 
+const getAlgumGameService = (name) => {
+  return getAlgumGameRepository(name);
+}
+
 export {
   createGameService,
   updateGameService,
   deleteGameService,
   getGamesService,
   getGameService,
+  getAlgumGameService,
 };

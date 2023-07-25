@@ -10,7 +10,7 @@ const createUsersController = async (req, res, next) => {
   const paramsEnviado = req.body;
 
   try {
-    if (!paramsEnviado.name || !paramsEnviado.password) {
+    if (!paramsEnviado.name || !paramsEnviado.email || !paramsEnviado.password) {
       res.status(400).send({ msg: "Nome e senha são obrigatórios!" });
     }
 

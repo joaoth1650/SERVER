@@ -16,9 +16,9 @@ const headers = {
 
 
 router.post('/users/register', (req, res) => {
-	const { username, password } = req.body;
+	const { name, email, password } = req.body;
 
-	User.create({ username, password })
+	Users.create({ name, email, password })
 		.then(() => {
 			res.send('Usuário registrado com sucesso');
 			console.log(res)

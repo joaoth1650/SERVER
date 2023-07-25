@@ -5,6 +5,7 @@ import {
   deleteGameController,
   getGamesController,
   getGameController,
+  getAlgumGameController,
 } from "../controllers/games.controller.js";
 
 const router = express.Router();
@@ -29,8 +30,10 @@ router.get('/games/consultaPage/?', verifyJWT , async (req, res) => {
     totalPages: Math.ceil(gamesWithCount.count / size)
   });
 });
+router.get("/games/search/:name",getAlgumGameController);
 router.get("/games", verifyJWT ,getGamesController);
 router.get("/games/:id",getGameController);
+
 
 
 

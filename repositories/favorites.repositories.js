@@ -27,7 +27,7 @@ const deleteFavoriteRepository = async (id) => {
   try {
     await Favorites.destroy({
       where: {
-        id: id,
+        gamesId: id,
       },
     });
   } catch (err) {

@@ -61,7 +61,7 @@ const getGameRepository = async (id) => {
   }
 };
 
-const getGameAlgumRepository = async (name) => {
+const getAlgumGameRepository = async (name) => {
   try {
     return await Games.findAll({
       where: {
@@ -85,4 +85,5 @@ export {
   deleteGameRepository,
   getGamesRepository,
   getGameRepository,
+  getAlgumGameRepository,
 };
