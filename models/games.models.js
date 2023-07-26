@@ -13,6 +13,10 @@ const Games = db.define(
       type: STRING,
       allowNull:false,
     },
+    category: { 
+      type: STRING,
+      allowNull:false,
+    },
     cost: { 
       type: INTEGER,
       allowNull:false,

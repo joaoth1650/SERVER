@@ -11,7 +11,7 @@ const createGamesController = async (req, res, next) => {
   const paramsEnviado = req.body;
 
   try {
-    if (!paramsEnviado.name || !paramsEnviado.cost) {
+    if (!paramsEnviado.name || !paramsEnviado.cost || !paramsEnviado.category) {
       res.status(400).send({ msg: "Nome e preço são obrigatórios!" });
     }
 
